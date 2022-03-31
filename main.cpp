@@ -6,6 +6,24 @@ using namespace std;
 
 int main(){
     Money i(300,23); //initial
-    Money q(200,0); //deposit
+    Money firstDeposit(200,0); //deposit
+    Money secondDeposit(300,24); //deposit
+    Money thirdDeposit(501,22); //deposit
+    Money firstWithdraw(300,10); //withdrawal
+    Money secondWithdraw(201,34); //withdrawal
+
+    Account a(i);
+    cout << a << endl;
+
+    a.makeDeposit(firstDeposit);
+    a.makeDeposit(secondDeposit);
+    a.makeDeposit(thirdDeposit);
+    cout << a << endl;
+
+    a.makeWithdrawals(firstWithdraw);
+    a.makeWithdrawals(secondWithdraw);
+    cout << a << endl;
+    
+
 
 }
