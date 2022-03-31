@@ -25,8 +25,8 @@ friend bool operator > (const Money&, const Money&);
 friend bool operator >= (const Money&, const Money&);
 friend bool operator <= (const Money&, const Money&);
 friend bool operator != (const Money&, const Money&);
-friend bool operator + (const Money&, const Money&);
-friend bool operator - (const Money&, const Money&);
+friend Money operator + (const Money&, const Money&);
+friend Money operator - (const Money&, const Money&);
 
 friend ostream& operator << (ostream &stream, const Money &total);
 };
