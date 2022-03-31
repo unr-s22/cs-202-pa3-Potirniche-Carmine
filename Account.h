@@ -8,14 +8,14 @@
 class Account
 {
 private:
-    std::vector<Money*> deposits;
-    std::vector<Money*> withdrawals;
-    Money* balance;
+    std::vector<Money> deposits;
+    std::vector<Money> withdrawals;
+    Money balance;
     bool changeFlag = false;
 public:
-    Account(Money*);
-    void makeDeposit(Money*);
-    void makeWithdrawals(Money*);
+    Account(Money);
+    void makeDeposit(Money);
+    void makeWithdrawals(Money);
     friend std::ostream& operator << (std::ostream&, const Account&);
 };
 

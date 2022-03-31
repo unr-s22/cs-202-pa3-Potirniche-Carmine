@@ -1,33 +1,33 @@
 #include "Account.h"
 
-Account::Account(Money* initialDeposit)
+Account::Account(Money initialDeposit)
 {
     makeDeposit(initialDeposit);
 }
 
-void Account::makeDeposit(Money* deposit)
+void Account::makeDeposit(Money deposit)
 {
     deposits.push_back(deposit);
     changeFlag = true;
 }
 
-void Account::makeWithdrawals(Money* withdrawal)
+void Account::makeWithdrawals(Money withdrawal)
 {
-    withdrawals.pop_back(withdrawal);
+    withdrawals.pop_back();
     changeFlag = true;
 }
 
 std::ostream& operator << (std::ostream& out, const Account& a)
 {
-    if(a.changeFlag = true)
+    if(a.changeFlag == true)
     {
-        for(Money& m : a.deposits)
+        for(Money m : a.deposits)
         {
-            totalDeposits += m;
+            Money totalDeposits += m;
         }
-        for(Money& m : a.withdrawals)
+        for(Money m : a.withdrawals)
         {
-            totalWithdrawals += m;
+            Money totalWithdrawals += m;
         }
         a.balance = totalDeposits - totalWithdrawals;
 
@@ -48,10 +48,10 @@ std::ostream& operator << (std::ostream& out, const Account& a)
     } else
     {
         int dCounter = 1;
-        for(Money& m : a.deposits)
+        for(Money m : a.deposits)
         {
             print << "(" << dCounter << ")" << m << std::endl;
-            printDCounter++;
+            dCounter++;
         }
     }
     print << "__________________________" << std::endl;
@@ -63,9 +63,10 @@ std::ostream& operator << (std::ostream& out, const Account& a)
     } else
     {
         int wCounter = 1;
-        for(Money& m : a.withdrawals)
+        for(Money m : a.withdrawals)
         {
             print << "(" << wCounter << ")" << m << std::endl;
+            wCounter++;
         }
     }
 
