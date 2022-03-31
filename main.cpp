@@ -23,7 +23,22 @@ int main(){
     a.makeWithdrawals(firstWithdraw);
     a.makeWithdrawals(secondWithdraw);
     cout << a << endl;
-    
+
+    Money m(100,10);
+    Money n(100,10);
+    if(m > n){
+        cout << m << ">" << n << endl;
+    }else if (m < n){
+        cout << m << "<" << n << endl;
+    }else if (m <= n){
+        cout << m << "<=" << n << endl;
+    }else if (m >= n){
+        cout << m << ">=" << n << endl;
+    }else if (m == n){
+        cout << m << "=" << n << endl;
+    }else if (m != n){
+        cout << m << "is not the same as " << n << endl;
+    }
 
 
 }
