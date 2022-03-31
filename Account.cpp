@@ -3,42 +3,40 @@
 Account::Account(Money initialDeposit)
 {
     makeDeposit(initialDeposit);
+    changeFlag = 1;
 }
 
 void Account::makeDeposit(Money deposit)
 {
     deposits.push_back(deposit);
-    changeFlag = true;
+    changeFlag = 1;
 }
 
 void Account::makeWithdrawals(Money withdrawal)
 {
-    withdrawals.pop_back();
-    changeFlag = true;
+    withdrawals.push_back(withdrawal);
+    changeFlag = 1;
 }
 
 std::ostream& operator << (std::ostream& out, const Account& a)
 {
-    if(a.changeFlag == true)
+    Money totalDeposits;
+    Money totalWithdrawals;
+    for(Money m : a.deposits)
     {
-        for(Money m : a.deposits)
-        {
-            Money totalDeposits += m;
-        }
-        for(Money m : a.withdrawals)
-        {
-            Money totalWithdrawals += m;
-        }
-        a.balance = totalDeposits - totalWithdrawals;
-
-        a.changeFlag = false;
+        totalDeposits = totalDeposits + m;
     }
+    for(Money m : a.withdrawals)
+    {
+        totalWithdrawals = totalWithdrawals + m;
+    }
+
 
     std::stringstream print;
 
     print << "Account Details" << std::endl;
     print << "__________________________" << std::endl;
-    print << "Current Balance: " << a.balance << std::endl;
+    print << "Current Balance: " << totalDeposits - totalWithdrawals << std::endl;
     print << "__________________________" << std::endl;
     print << "Number of Deposits: " << a.deposits.size() << std::endl;
     print << "____________________" << std::endl;
@@ -50,12 +48,12 @@ std::ostream& operator << (std::ostream& out, const Account& a)
         int dCounter = 1;
         for(Money m : a.deposits)
         {
-            print << "(" << dCounter << ")" << m << std::endl;
+            print << "(" << dCounter << ") " << m << std::endl;
             dCounter++;
         }
     }
     print << "__________________________" << std::endl;
-    print << "Number of Withdrawals" << a.withdrawals.size() << std::endl;
+    print << "Number of Withdrawals: " << a.withdrawals.size() << std::endl;
     print << "__________________________" << std::endl;
     if(a.withdrawals.size() < 1)
     {
@@ -65,7 +63,7 @@ std::ostream& operator << (std::ostream& out, const Account& a)
         int wCounter = 1;
         for(Money m : a.withdrawals)
         {
-            print << "(" << wCounter << ")" << m << std::endl;
+            print << "(" << wCounter << ") " << m << std::endl;
             wCounter++;
         }
     }
